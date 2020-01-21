@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ArchitectureComponentsIntro</string>
+    <string name="increase">Increase</string>
 </resources>
