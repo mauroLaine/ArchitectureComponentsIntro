@@ -2,8 +2,8 @@ package com.laine.mauro.architecturecomponentsintro
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -14,5 +14,15 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         counterViewModel = ViewModelProviders.of(this)[CounterViewModel::class.java]
+        updateUI(counterViewModel.counter)
+
+        increase_btn.setOnClickListener {
+            counterViewModel.increaseCounter()
+            updateUI(counterViewModel.counter)
+        }
+    }
+
+    fun updateUI(value: Int) {
+        counter_tv.text = value.toString()
     }
 }
