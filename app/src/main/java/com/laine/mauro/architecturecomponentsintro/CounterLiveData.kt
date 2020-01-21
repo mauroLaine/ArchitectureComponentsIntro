@@ -2,14 +2,14 @@ package com.laine.mauro.architecturecomponentsintro
 
 import androidx.lifecycle.LiveData
 
-class CounterLiveData() : LiveData<Int>() {
+class CounterLiveData : LiveData<Int>() {
 
-    fun CounterLiveData() {
+    init {
         value = 0
     }
 
     fun increaseCounter() {
-        value = +1
+        value = value!!.plus(1)
     }
 
     override fun onInactive() {
