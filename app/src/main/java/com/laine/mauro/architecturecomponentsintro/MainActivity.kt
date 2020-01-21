@@ -16,13 +16,13 @@ class MainActivity : AppCompatActivity() {
         counterViewModel = ViewModelProviders.of(this)[CounterViewModel::class.java]
         updateUI(counterViewModel.counter)
 
-        increase_btn.setOnClickListener {
+        vm_increase_btn.setOnClickListener {
             counterViewModel.increaseCounter()
             updateUI(counterViewModel.counter)
         }
     }
 
     fun updateUI(value: Int) {
-        counter_tv.text = value.toString()
+        vm_counter_tv.text = value.toString()
     }
 }
