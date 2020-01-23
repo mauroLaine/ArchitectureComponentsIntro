@@ -38,6 +38,7 @@ class MainActivity : AppCompatActivity() {
             counterLiveDataModel.increaseCounter()
         }
 
+        SimpleLifecycleObserver.bindInto(this)
     }
 
     fun updateVMCounter(value: Int) {
