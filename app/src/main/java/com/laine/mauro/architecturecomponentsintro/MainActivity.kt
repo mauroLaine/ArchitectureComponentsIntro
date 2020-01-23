@@ -10,6 +10,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var counterViewModel: CounterViewModel
     private lateinit var counterLiveData: CounterLiveData
+    private lateinit var counterLiveDataModel: CounterLiveDataModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,6 +31,13 @@ class MainActivity : AppCompatActivity() {
             counterLiveData.increaseCounter()
         }
 
+        //View Model using Live Data
+        counterLiveDataModel = ViewModelProviders.of(this)[CounterLiveDataModel::class.java]
+        subscribeVMLD()
+        vm_ld_increase_btn.setOnClickListener {
+            counterLiveDataModel.increaseCounter()
+        }
+
     }
 
     fun updateVMCounter(value: Int) {
@@ -42,5 +50,12 @@ class MainActivity : AppCompatActivity() {
             ld_counter_tv.text = it.toString()
         }
         counterLiveData.observe(this, observer)
+    }
+
+    fun subscribeVMLD() {
+        val observer = Observer<Int> {
+            vm_ld_counter_tv.text = it.toString()
+        }
+        counterLiveDataModel.getCounter().observe(this, observer)
     }
 }
