@@ -2,5 +2,6 @@
     <string name="app_name">ArchitectureComponentsIntro</string>
     <string name="vm_increase">VM Increase</string>
     <string name="ld_increase">LD Increase</string>
+    <string name="vm_ld_increase">VM/LD Increase</string>
     <string name="initial_value">0</string>
 </resources>
