@@ -76,4 +76,25 @@
         app:layout_constraintTop_toBottomOf="@+id/vm_ld_counter_tv"
         app:layout_constraintVertical_bias="0.049" />
 
+    <EditText
+        android:id="@+id/name_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/vm_ld_increase_btn" />
+
+    <TextView
+        android:id="@+id/counter_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/initial_value"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/name_input" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
