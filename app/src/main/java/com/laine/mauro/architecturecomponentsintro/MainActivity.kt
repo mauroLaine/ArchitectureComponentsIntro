@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
 
         //View Model word counting
         calculationViewModel = ViewModelProviders.of(this)[CalculationViewModel::class.java]
-
+        subscribeCountingObserver()
         name_input.setOnEditorActionListener { v, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 calculationViewModel.setName(name_input.text.toString())
@@ -72,5 +72,12 @@ class MainActivity : AppCompatActivity() {
             vm_ld_counter_tv.text = it.toString()
         }
         counterLiveDataModel.getCounter().observe(this, observer)
+    }
+
+    fun subscribeCountingObserver() {
+        val observer = Observer<Int> {
+            counter_input.text = it.toString()
+        }
+        calculationViewModel.getCounting().observe(this, observer)
     }
 }
