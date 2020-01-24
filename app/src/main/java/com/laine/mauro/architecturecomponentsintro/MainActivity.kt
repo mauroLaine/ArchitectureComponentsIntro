@@ -2,6 +2,8 @@ package com.laine.mauro.architecturecomponentsintro
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.inputmethod.EditorInfo
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.activity_main.*
@@ -11,6 +13,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var counterViewModel: CounterViewModel
     private lateinit var counterLiveData: CounterLiveData
     private lateinit var counterLiveDataModel: CounterLiveDataModel
+    private lateinit var calculationViewModel: CalculationViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +39,17 @@ class MainActivity : AppCompatActivity() {
         subscribeVMLD()
         vm_ld_increase_btn.setOnClickListener {
             counterLiveDataModel.increaseCounter()
+        }
+
+        //View Model word counting
+        calculationViewModel = ViewModelProviders.of(this)[CalculationViewModel::class.java]
+
+        name_input.setOnEditorActionListener { v, actionId, event ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                calculationViewModel.setName(name_input.text.toString())
+                return@setOnEditorActionListener true
+            }
+            return@setOnEditorActionListener false
         }
 
         SimpleLifecycleObserver.bindInto(this)

@@ -85,7 +85,8 @@
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/vm_ld_increase_btn" />
+        app:layout_constraintTop_toBottomOf="@+id/vm_ld_increase_btn"
+        android:importantForAutofill="no" />
 
     <TextView
         android:id="@+id/counter_input"
