@@ -2,8 +2,8 @@ package com.laine.mauro.architecturecomponentsintro
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.view.inputmethod.EditorInfo
-import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.activity_main.*
@@ -44,6 +44,7 @@ class MainActivity : AppCompatActivity() {
         //View Model word counting
         calculationViewModel = ViewModelProviders.of(this)[CalculationViewModel::class.java]
         subscribeCountingObserver()
+        subscribeReverseObserver()
         name_input.setOnEditorActionListener { v, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 calculationViewModel.setName(name_input.text.toString())
@@ -76,8 +77,17 @@ class MainActivity : AppCompatActivity() {
 
     fun subscribeCountingObserver() {
         val observer = Observer<Int> {
-            counter_input.text = it.toString()
+            word_counter.visibility = View.VISIBLE
+            word_counter.text = it.toString()
         }
         calculationViewModel.getCounting().observe(this, observer)
+    }
+
+    fun subscribeReverseObserver() {
+        val observer = Observer<String> {
+            reverse_word.visibility = View.VISIBLE
+            reverse_word.text = it.toString()
+        }
+        calculationViewModel.getReverseString().observe(this, observer)
     }
 }

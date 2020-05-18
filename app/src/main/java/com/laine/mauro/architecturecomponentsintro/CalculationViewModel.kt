@@ -9,6 +9,7 @@ class CalculationViewModel : ViewModel() {
 
     private val inputName = MutableLiveData<String>()
     private val nameCounting = Transformations.map(inputName, String::length)
+    private val reverseWord = Transformations.map(inputName, String::reversed)
 
     fun setName(name: String) {
         inputName.value = name
@@ -18,4 +19,7 @@ class CalculationViewModel : ViewModel() {
         return nameCounting
     }
 
+    fun getReverseString(): LiveData<String> {
+        return reverseWord
+    }
 }
